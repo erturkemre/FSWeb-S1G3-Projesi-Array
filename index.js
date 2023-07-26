@@ -112,7 +112,7 @@ Aşağıdakileri yapmak için aşağıdaki indekstekiCesitiGetir işlevini kulla
 */
 
 function indekstekiCesitiGetir(orijinalTatlar, index) {
-  return orijinalTatlar[index + 1];
+  return orijinalTatlar[index];
 }
 console.log(indekstekiCesitiGetir(orijinalTatlar, 2));
 /* Görev 6:
@@ -130,9 +130,15 @@ Aşağıdakileri yapmak için ismeGoreCesitCikar işlevini kullanın:
   İPUCU: Bunun için .splice() kullanabilirsiniz.
 */
 
-function ismeGoreCesitCikar(/*kod buraya*/) {
-  /*kod buraya*/
+function ismeGoreCesitCikar(tatlar, lezzetAdi) {
+  for (let i = 0; i < tatlar.length; i++) {
+    if (tatlar[i] == lezzetAdi) {
+      tatlar.splice(i, 1);
+    }
+  }
+  return tatlar;
 }
+console.log(ismeGoreCesitCikar(orijinalTatlar, "Tarçın"));
 
 /* Görev 7:
 
@@ -154,9 +160,16 @@ Aşağıdakileri yapmak için ismeGoreFiltrele işlevini kullanın:
   Bu sorunu çözmek için GELİŞMİŞ DİZİ YÖNTEMLERİNİ (yani .filter) KULLANMAYIN.
 */
 
-function ismeGoreFiltrele(/*kod buraya*/) {
-  /*kod buraya*/
+function ismeGoreFiltrele(tatlar, filtre) {
+  let filtrelenmisTatlar = [];
+  for (let i = 0; i < tatlar.length; i++) {
+    if (tatlar[i].includes(filtre)) {
+      filtrelenmisTatlar.push(tatlar[i]);
+    }
+  }
+  return filtrelenmisTatlar;
 }
+console.log(ismeGoreFiltrele(orijinalTatlar, "Çikolata"));
 
 /* ALIŞTIRMA */
 
@@ -170,9 +183,7 @@ Aşağıdakileri yapmak için ortalamaKelimeSayisi işlevini kullanın:
    Örneğin: ortalamaKelimeSayisi(orijinalTatlar) 0 ile 2 arasında bir sayı döndürmelidir.
 */
 
-function ortalamaKelimeSayisi(/*kod buraya*/) {
-  /*kod buraya*/
-}
+function ortalamaKelimeSayisi() {}
 
 /* ALIŞTIRMA 2:
 Firma mevcut tatların yanında artık mevsimlik lezzetler ve hatta bölgesel lezzetler de sunmaktadır. Toplam 25 lezzet aromasını
@@ -186,47 +197,70 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
   Örneğin: rastgeleTatlar(orijinalTatlar, yeniTatlar, mevsimlikTatlar, bolgeselTatlar) çalıştırıldığında ["Kestane", "Ballı Badem,"..."Hindistan Cevizi", "Kuru üzüm"].
 */
 
-function rastgeleTatlar(/*kod buraya*/) {
-  /*kod buraya*/
+const yeniTatlar = [
+  "Badem",
+  "Ballı Badem",
+  "Fıstık Ezmesi",
+  "Profiterol",
+  "Madlen Çikolata",
+];
+
+const mevsimlikTatlar = [
+  "Pekan",
+  "Kaju",
+  "Çikolatalı Mousse",
+  "Fransız Vanilyası",
+  "Yumurta",
+  "Alman çikolatası",
+  "Kek üzerine krema",
+  "Hindistan Cevizi",
+  "Kaymaklı Biskuvi",
+  "Beyaz Çikolata",
+  "Mango",
+];
+
+const bolgeselTatlar = [
+  "Kaymak",
+  "Karpuz",
+  "Karadut",
+  "Turunç",
+  "Portakal",
+  "Yogurt",
+  "Krem Peynir",
+  "Kakao",
+  "Karamel macchiato",
+  "Kuru üzüm",
+  "Peynir",
+  "Karamel",
+];
+function rastgeleTatlar( //parametre gönderdik
+  orijinalTatlar,
+  yeniTatlar,
+  mevsimlikTatlar,
+  bolgeselTatlar
+) {
+  const mergedArray = orijinalTatlar.concat(
+    //concat ile dizileri birleştirdik
+    yeniTatlar,
+    mevsimlikTatlar,
+    bolgeselTatlar
+  );
+
+  const randomTatlar = []; //randomTatlar adında boş bir dizi oluşturduk
+  for (let i = 0; randomTatlar.length < 25; i++) {
+    let randomSecilen =
+      mergedArray[Math.floor(Math.random() * mergedArray.length)];
+    if (randomTatlar.includes(randomSecilen)) {
+      //includes ile randomSecilen dizide var mı diye kontrol ettik
+    } else {
+      randomTatlar.push(randomSecilen);
+    }
+  }
+  return randomTatlar;
 }
-
-// NEW DATA ARRAYS FOR STRETCH 2 ⬇️
-// const yeniTatlar = [
-//   "Badem",
-//   "Ballı Badem",
-//   "Fıstık Ezmesi",
-//   "Profiterol",
-//   "Madlen Çikolata"
-// ]
-
-// const mevsimlikTatlar = [
-// "Pekan",
-// "Kaju",
-// "Çikolatalı Mousse",
-// "Fransız Vanilyası",
-// "Yumurta",
-// "Alman çikolatası",
-// "Kek üzerine krema",
-// "Hindistan Cevizi",
-// "Kaymaklı Biskuvi",
-// "Beyaz Çikolata",
-// "Mango"
-// ]
-
-// const bolgeselTatlar = [
-// "Kaymak",
-// "Karpuz",
-// "Karadut",
-// "Turunç",
-// "Portakal",
-// "Yogurt",
-// "Krem Peynir",
-// "Kakao",
-// "Karamel macchiato",
-// "Kuru üzüm",
-// "Peynir",
-// "Karamel"
-// ]
+console.log(
+  rastgeleTatlar(orijinalTatlar, yeniTatlar, mevsimlikTatlar, bolgeselTatlar)
+);
 
 /* Lütfen bu satırın altındaki hiçbir şeyi değiştirmeyin */
 function sa() {
