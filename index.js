@@ -249,11 +249,11 @@ function rastgeleTatlar( //parametre gönderdik
   const randomTatlar = []; //randomTatlar adında boş bir dizi oluşturduk
   for (let i = 0; randomTatlar.length < 25; i++) {
     let randomSecilen =
-      mergedArray[Math.floor(Math.random() * mergedArray.length)];
+      mergedArray[Math.floor(Math.random() * mergedArray.length)]; //randomSecilen adında bir değişken oluşturduk ve içine random bir değer atadık
     if (randomTatlar.includes(randomSecilen)) {
       //includes ile randomSecilen dizide var mı diye kontrol ettik
     } else {
-      randomTatlar.push(randomSecilen);
+      randomTatlar.push(randomSecilen); //yoksa randomTatlar dizisine ekledik
     }
   }
   return randomTatlar;
